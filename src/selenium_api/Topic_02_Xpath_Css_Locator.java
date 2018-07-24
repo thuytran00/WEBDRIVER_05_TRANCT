@@ -10,7 +10,7 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.Assert;
 import org.testng.annotations.AfterClass;
 
-@Test
+
 public class Topic_02_Xpath_Css_Locator {
 	WebDriver driver;
   
@@ -19,8 +19,34 @@ public class Topic_02_Xpath_Css_Locator {
 	  driver = new FirefoxDriver();
 	  driver.manage().window().maximize();
   }
-  
-  public void TC_01_LoginWithUserPassEmpty() {
+ 
+ @Test
+ public void TC_01_CheckNavigatePage() {
+	 
+	 driver.get("http://live.guru99.com");
+	 driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
+	 String homePageTitle = driver.getTitle();
+	 Assert.assertEquals(homePageTitle, "Home page");
+	 
+	 driver.findElement(By.xpath("//div[@class='footer']//a[contains(text(),'My Account')]")).click();
+	 driver.findElement(By.xpath("//a[@title='Create an Account']")).click();
+		
+	 driver.navigate().back();
+	 //ve lai page Login thanh cong
+	 Assert.assertTrue(driver.findElement(By.xpath("//form[@id='login-form']")).isDisplayed());
+
+	 String loginUrl = driver.getCurrentUrl();
+	 Assert.assertEquals(loginUrl, "http://live.guru99.com/index.php/customer/account/login/");
+	 
+	 driver.navigate().forward();
+	 Assert.assertTrue(driver.findElement(By.xpath("//form[@id='form-validate']")).isDisplayed());
+
+	 String registerUrl = driver.getCurrentUrl();
+	 Assert.assertEquals(registerUrl, "http://live.guru99.com/index.php/customer/account/create/");
+	 
+ }
+ @Test(enabled=false)
+  public void TC_02_LoginWithUserPassEmpty() {
   
 	  driver.get("http://live.guru99.com/index.php");
 	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -34,7 +60,8 @@ public class Topic_02_Xpath_Css_Locator {
 	  String passwordEmptyMessage = driver.findElement(By.id("advice-required-entry-pass")).getText();
 	  Assert.assertEquals(passwordEmptyMessage, "This is a required field.");
   }
-  public void TC_02_LoginWithEmailInvalid() {
+ @Test(enabled=false)
+  public void TC_03_LoginWithEmailInvalid() {
 	  driver.get("http://live.guru99.com/index.php");
 	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
 	  
@@ -48,7 +75,8 @@ public class Topic_02_Xpath_Css_Locator {
 	  
 	
   }
-  public void TC_03_LoginWithPassIncorrect() {
+ @Test(enabled=false)
+  public void TC_04_LoginWithPassIncorrect() {
   
 	  driver.get("http://live.guru99.com/index.php");
 	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
@@ -63,8 +91,8 @@ public class Topic_02_Xpath_Css_Locator {
 	  
 	
   }
-  
-  public void TC_04_CreateAnAccount() {
+ @Test(enabled=false)
+  public void TC_05_CreateAnAccount() {
   
 	  driver.get("http://live.guru99.com/index.php");
 	  driver.manage().timeouts().implicitlyWait(30, TimeUnit.SECONDS);
