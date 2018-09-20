@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+
+  
+   <test name="Run on Firefox">
+   <parameter name="browser" value="firefox" />
+       <classes>
+      <class name="selenium_testng.TestNG_06_Loop"/>
+    </classes>
+  </test> <!-- Test -->
+
+</suite> <!-- Suite -->

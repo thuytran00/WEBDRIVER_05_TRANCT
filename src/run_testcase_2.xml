@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<suite name="Suite" parallel="false">
+
+  <test name="Test">
+  <groups>
+	<run>
+		<include name="cus" />
+	</run>
+</groups>
+    <classes>
+      <class name="selenium_testng.TestNG_02_Group"/>
+    </classes>
+  </test> <!-- Test -->
+</suite> <!-- Suite -->
